@@ -1,0 +1,8 @@
+# AI Dental Age Estimation Module Development Log
+
+## 2026-07-14
+- Dental_011 레포지토리 초기화 및 디렉토리 구조 설정.
+- Zenodo 데이터셋(DOI: 10.5281/zenodo.16745408) 다운로드 스크립트 작성 및 295장 이미지 획득.
+- PyTorch 기반 데이터 로더(dataset.py), ResNet18 회귀 백본 모델(model.py) 작성.
+- 학습용 스크립트(train.py) 작성 및 검증 로직(test.py) 추가.
+- 메인 시스템 연동을 대비하여 래퍼 클래스 및 파이프라인 연계 기반 마련.
