@@ -31,7 +31,15 @@ class DentalAgeDataset(Dataset):
             
         return image, torch.tensor(age, dtype=torch.float32)
 
-def get_dataloaders(data_dir, batch_size=8, img_size=(224, 448)):
+def get_dataloaders(data_dir, batch_size=8, img_size=(224, 448), use_hybrid=False):
+    if use_hybrid:
+        # data_dir should be something like "data/dataset ++", but hybrid is in "data/hybrid_dataset"
+        base_dir = os.path.dirname(data_dir)
+        hybrid_dir = os.path.join(base_dir, "hybrid_dataset")
+        if os.path.exists(hybrid_dir):
+            print(f"Using hybrid dataset from {hybrid_dir}")
+            data_dir = hybrid_dir
+            
     all_files = glob.glob(os.path.join(data_dir, "*.jpg"))
     # Filter files that contain space (valid format)
     valid_files = [f for f in all_files if ' ' in os.path.basename(f)]

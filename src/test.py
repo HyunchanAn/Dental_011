@@ -5,15 +5,15 @@ from dataset import get_dataloaders
 from model import AgeRegressionModel
 import matplotlib.pyplot as plt
 
-def evaluate_model(data_dir, weights_path):
+def test_model(data_dir, weights_path, batch_size=8, use_hybrid=False):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
     
-    _, val_loader = get_dataloaders(data_dir, batch_size=8)
+    _, val_loader = get_dataloaders(data_dir, batch_size=batch_size, use_hybrid=use_hybrid)
     
     model = AgeRegressionModel(pretrained=False)
     if os.path.exists(weights_path):
-        model.load_state_dict(torch.load(weights_path, map_location=device))
+        model.load_state_dict(torch.load(weights_path, map_location=device, weights_only=True))
         print(f"Loaded weights from {weights_path}")
     else:
         print(f"Warning: Weights not found at {weights_path}. Evaluating with random weights.")
@@ -53,5 +53,16 @@ def evaluate_model(data_dir, weights_path):
 
 if __name__ == "__main__":
     DATA_DIR = os.path.join("..", "data", "dataset ++")
-    WEIGHTS_PATH = os.path.join("weights", "best_age_model.pth")
-    evaluate_model(DATA_DIR, WEIGHTS_PATH)
+    
+    # Default to checking for hybrid model first
+    WEIGHTS_PATH = os.path.join("weights", "best_hybrid_age_model.pth")
+    USE_HYBRID = True
+    
+    if not os.path.exists(WEIGHTS_PATH):
+        WEIGHTS_PATH = os.path.join("weights", "best_age_model.pth")
+        USE_HYBRID = False
+        
+    if not os.path.exists(WEIGHTS_PATH):
+        print(f"Weights not found at {WEIGHTS_PATH}. Please train the model first.")
+    else:
+        test_model(DATA_DIR, WEIGHTS_PATH, batch_size=8, use_hybrid=USE_HYBRID)
