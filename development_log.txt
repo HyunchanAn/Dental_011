@@ -9,4 +9,4 @@
 - RTX 5080 하드웨어를 활용하여 훈련 스크립트(`src/train.py`) 하이퍼파라미터 최적화 완료 (Batch 16, Epoch 150, Early Stopping 도입).
 - Age Regression 벤치마크 결과: Validation MAE 오차를 7.8년에서 0.76년으로 축소 달성 (Epoch 53 조기 종료).
 - `docs/benchmark-report.md` 및 `docs/implementation-notes.md`를 생성하여 성능 지표 및 구현 의사결정(ADR) 문서화 완료.
-- [추가] Hybrid 모드 전환 및 Epoch 상한 해제(150)를 통한 재학습 결과, Validation MAE를 **0.7585년**으로 추가 단축 성공 (Epoch 31 조기 종료). 최적 가중치는 `best_hybrid_age_model.pth`로 산출 완료.
+- [추가] Hybrid 모드 전환 및 Epoch 상한 해제(150)를 통한 재학습 결과, Validation MAE를 0.7585년으로 추가 단축 성공 (Epoch 31 조기 종료). 최적 가중치는 `best_hybrid_age_model.pth`로 산출 완료.
