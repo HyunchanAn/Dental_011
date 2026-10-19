@@ -10,3 +10,9 @@
 - Age Regression 벤치마크 결과: Validation MAE 오차를 7.8년에서 0.76년으로 축소 달성 (Epoch 53 조기 종료).
 - `docs/benchmark-report.md` 및 `docs/implementation-notes.md`를 생성하여 성능 지표 및 구현 의사결정(ADR) 문서화 완료.
 - [추가] Hybrid 모드 전환 및 Epoch 상한 해제(150)를 통한 재학습 결과, Validation MAE를 0.7585년으로 추가 단축 성공 (Epoch 31 조기 종료). 최적 가중치는 `best_hybrid_age_model.pth`로 산출 완료.
+
+## 2026-10-20
+- `src/dataset.py`에 결정론적 3-Way 분할(`train` 70% 206장 / `val` 15% 44장 / `test` 15% 45장, `random_state=42`) 및 SHA-256 바이트 해시 중복 점검 함수(`check_sha256_duplicates`) 구현 (`get_dataloaders` 하위 호환성 유지).
+- Zenodo 16745408 데이터셋 295장 전수 SHA-256 감사 수행: 고유 해시 293개(중복 2쌍: `11 16.jpg`/`11 17.jpg`, `17  1.jpg`/`17 3.jpg`) 확인 및 독립 Test 셋(`n=45`) 정량 평가 완료 (Model Test MAE 0.7755년, 95% Bootstrap CI `[0.5762, 1.0055]`, Baseline Median 15.0세 MAE 1.9333년).
+- `docs/benchmark-report.md`, `README.md` 업데이트 및 `LICENSE`(MIT) 파일 추가.
+
