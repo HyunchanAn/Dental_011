@@ -6,7 +6,7 @@
 이 모듈은 파노라마 방사선 사진을 입력받아 환자의 치아 연령(Dental Age)을 추정하는 딥러닝(ResNet-18 Regression) 기반 분석 시스템입니다. 임상(소아치과, 교정) 및 법의학 분야의 연령 추정 수요를 충족시키며, `Dental_008` 모듈(치아 분할)과 연동하여 치아 ROI 마스킹을 수행하는 Hybrid 파이프라인으로 구성되어 있습니다.
 
 ## 디렉토리 구조
-- `data/`: Zenodo(`16745408`) 등 외부 소스로부터 획득한 치아 방사선 데이터 (Gitignore 처리)
+- `data/hybrid_dataset/`: Zenodo Record `16745408` (`CC BY 4.0`) 기반 치아 ROI 하이브리드 마스킹 데이터셋 (295장, 결정론적 3-Way 분할 벤치마크 재현을 위해 추적 유지; 원본 압축 아카이브 `*.zip` 및 중복 스테이징 폴더 `data/dataset ++/`는 `.gitignore` 처리)
 - `src/`
   - `dataset.py`: 데이터 파싱, SHA-256 중복 점검 및 결정론적 3-Way 분할(`train` 70% / `val` 15% / `test` 15%) PyTorch DataLoader 제공 로직
   - `model.py`: 연령 회귀를 위한 ResNet-18 백본 아키텍처
