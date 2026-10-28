@@ -16,3 +16,6 @@
 
 2026-10-25
 - `docs/benchmark-report.md` 및 `docs/implementation-notes.md` 공식 종결(`[CLOSED]` / `[PASS]` 완결) 명시 및 개발일지(`development_log.txt`) 표준 양식 통일 완료.
+
+2026-10-28
+- 이슈 #3 해결: `requirements.txt`에 `torch`, `torchvision`, `numpy`, `Pillow`, `scikit-learn` 필수 의존성을 명시하고 `Dental_000/tests/tests_011/test_model.py` 경로 탐색을 보강하여 원격 GitHub Actions CI 복구 완료.
